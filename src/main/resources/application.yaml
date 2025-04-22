@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: task_management
+
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:postgres}
+    username: ${POSTGRES_USERNAME:auth-service}
+    password: ${POSTGRES_PASSWORD:1408maksim}
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+  data:
+    redis:
+      port: ${REDIS_PORT:6379}
+      host: ${REDIS_HOST:localhost}
+      expiration: ${EXPIRATION_TIME:3600}
+
+server:
+  port: 8085
+
+properties:
+  jwt:
+    secret: ${SECRET_KEY}
+    expiration-time: ${EXPIRATION_TIME:3600}
+    refresh-interval: ${REFRESH_INTERVAL:3600000}
+
+logging:
+  level:
+    org.springframework.web: DEBUG
+    org.springframework.http.converter.json: DEBUG
